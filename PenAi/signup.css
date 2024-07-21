@@ -1,10 +1,13 @@
 body{
     padding: 0px;
     box-sizing: 0px;
-}
+    background-image: url(background.jpg);
+ }
 
-.login{
+.signup{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 150px;
+    margin-left: 150px;
 }
