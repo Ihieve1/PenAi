@@ -18,10 +18,10 @@ body{
     gap: 10px;
 }
 .login p {
-    font-size: 12px;
+    font-size: 15px;
 }
 .login label{
-    font-size: 12px;
+    font-size: 15px;
 }
 #signin{
     padding: 3px;
