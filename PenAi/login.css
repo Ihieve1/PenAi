@@ -2,17 +2,46 @@ body{
     padding: 0px;
     box-sizing: 0px;
     background-image: url(background.jpg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 150px;
-    margin-left: 150px;
+    margin: 150px;   
     background-color: white;
     align-items: center;
-    /* border-radius: 12cm; */
-    padding: 20px ;
-    width: 1000px;
+    border-radius: 12px;
+    padding: 0px ;
+    width: 800px;
+    gap: 10px;
 }
+.login p {
+    font-size: 12px;
+}
+.login label{
+    font-size: 12px;
+}
+#signin{
+    padding: 3px;
+    background-color: rgb(30, 10, 209);
+    color: white;
+    border-radius: 5px;
+    width: 175px;
+    border: none;
+
+}
+#header{
+    line-height: px;
+}
+.loginform{
+   display: flex; 
+   flex-direction: column;
+   margin: 0px;
+   align-items: left;
+   padding: 15px;
+   line-height: 5px;
+   gap: 20px;
+}
+
