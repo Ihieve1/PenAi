@@ -1,0 +1,55 @@
+body{
+    padding: 0px;
+    box-sizing: 0px;
+    background-image: url(background.jpg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.signup{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 150px;   
+    background-color: white;
+    align-items: center;
+    border-radius: 12px;
+    padding: 0px ;
+    width: 800px;
+    gap: 10px;
+}
+
+.signup p{
+    font-size: 15px;
+}
+.signup label{
+    font-size: 15px;
+} 
+#register {
+    padding: 3px;
+    background-color: rgb(30, 10, 209);
+    color: white;
+    border-radius: 5px;
+    width: 175px;
+    border: none;
+}
+.registerhead{
+    line-height: 20px;
+}
+#register{
+    padding: 3px;
+    background-color: rgb(30, 10, 209);
+    color: white;
+    border-radius: 5px;
+    width: 175px;
+    border: none;
+}
+#signupform{
+    display: flex; 
+    flex-direction: column;
+    margin: 0px;
+    align-items: left;
+    padding: 15px;
+    line-height: 5px;
+    gap: 20px;
+}
