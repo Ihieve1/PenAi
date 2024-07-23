@@ -1,11 +1,24 @@
 body{
     padding: 0px;
     box-sizing: 0px;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
+h1{
+   color: rgb(5, 6, 82);
+   text-align: center;
+}
 .team{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    gap: 10px;
+    background-color: aquamarine;
+    padding: 50px;
+}
+
+#Chiamaka{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
     
 }
