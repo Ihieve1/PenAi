@@ -1,4 +1,4 @@
-body{
+*{
     padding: 0px;
     box-sizing: 0px;
     font-family: Arial, Helvetica, sans-serif;
@@ -11,14 +11,60 @@ h1{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 10px;
+    gap: 30px;
     background-color: aquamarine;
-    padding: 50px;
+    padding: 20px;
+}
+#Chiamaka {
+    justify-content: center;
+    background-color: white;
+}
+#Tobi {
+    justify-content: center;
+}
+#Stephen {
+    justify-content: center;
+}
+#Elijah {
+    justify-content: center;
 }
 
-#Chiamaka{
+.team_description{
+    margin: 5px;
+    
+}
+.team_description h3{
+    margin: 0;
+}
+.team_description p{
+   margin: 0;
+}
+#Chiamaka img{
     display: flex;
     flex-direction: column;
     gap: 0px;
-    
+    width: 200px;
+    height: 200px;
+}
+
+#Tobi img{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 200px;
+    height: 200px;
+}
+#Stephen img{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 200px;
+    height: 200px;
+}
+#Elijah img{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 200px;
+    height: 200px;
 }
