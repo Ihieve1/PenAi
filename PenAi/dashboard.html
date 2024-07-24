@@ -72,7 +72,7 @@
 <body background="stage 3.jpg">
     <div class="container">
         <h1>EDIT PROFILE</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form id="profileForm" enctype="multipart/form-data">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="fullName" required>
 
@@ -91,6 +91,10 @@
             <label for="displayImage">Display Image</label>
             <input type="file" id="displayImage" name="displayImage" accept="image/*" required>
 
+            <div class="image-preview" id="imagePreview">
+                <img src="" alt="Image Preview" id="previewImage">
+            </div>
+
             <button type="submit">Generate Email Profile</button>
         </form>
 
@@ -99,5 +103,57 @@
             <p id="profileDetails"></p>
         </div>
     </div>
+
+    <script>
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const fullName = document.getElementById('fullName').value;
+            const jobTitle = document.getElementById('jobTitle').value;
+            const companyName = document.getElementById('companyName').value;
+            const emailAddress = document.getElementById('emailAddress').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const displayImage = document.getElementById('displayImage').files[0];
+
+            // Display profile details
+            const profileDetails = `
+                <strong>Name:</strong> ${fullName}<br>
+                <strong>Job Title:</strong> ${jobTitle}<br>
+                <strong>Company:</strong> ${companyName}<br>
+                <strong>Email:</strong> ${emailAddress}<br>
+                <strong>Phone:</strong> ${phoneNumber}
+            `;
+
+            document.getElementById('profileDetails').innerHTML = profileDetails;
+
+            // Display image
+            if (displayImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('previewImage').style.display = 'block';
+                };
+                reader.readAsDataURL(displayImage);
+            }
+
+            // Show the profile section
+            document.getElementById('emailProfile').style.display = 'block';
+        });
+
+        // Image preview
+        document.getElementById('displayImage').addEventListener('change', function() {
+            const displayImage = this.files[0];
+            if (displayImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                };
+                reader.readAsDataURL(displayImage);
+            } else {
+                document.getElementById('previewImage').src = '';
+            }
+        });
+    </script>
 </body>
 </html>
