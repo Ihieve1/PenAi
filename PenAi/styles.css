@@ -1,4 +1,35 @@
 body{
-    background-color: blue;
-    color: blue;
+    background-colour: white;
+    color: black;
+}
+
+img{
+    width: 300px;
+    height: 300px;
+}
+
+/* .firstdiv h1{
+    padding: 50px;
+    padding-bottom: 5px;
+}
+
+.firstdiv p{
+    width: 500px;
+    padding-left: 50px;
+}
+
+.firstdiv img{
+    
+} */
+
+.firstdiv{
+    display: flex;
+    align-items: center;
+}
+
+.firstdiv h1{
+    adding-right:30px ;
+}
+
+.firstdiv img{
 }
