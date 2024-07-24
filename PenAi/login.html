@@ -5,32 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="login.css">
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBnqiphyNW22iJHDE78mGccvnUnubZ5xEA",
+            authDomain: "penai-45582.firebaseapp.com",
+            projectId: "penai-45582",
+            storageBucket: "penai-45582.appspot.com",
+            messagingSenderId: "814415327072",
+            appId: "1:814415327072:web:64935656d24c2a4a527805",
+            measurementId: "G-BJFD578BR2"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('login-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        alert('Login successful!');
+                        window.location.href = 'index.html';
+                    })
+                    .catch((error) => {
+                        console.error('Error signing in:', error.code, error.message);
+                        alert(error.message);
+                    });
+            });
+        });
+    </script>
 </head>
 <body>
-    
 <section class="login">
-<div class="loginform">
-    <div id="header">
-    <h1 >Welcome Back</h1>
-    <p>Welcome back! Please enter your details.</p>
+    <div class="loginform">
+        <div id="header">
+            <img src="logo.png" alt="Logo" style="width: 100px; margin-bottom: 20px;">
+            <h1>Welcome Back</h1>
+            <p>Welcome back! Please enter your details.</p>
+        </div>
+        <form id="login-form" action="dashboard.html">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            <br>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            
+            <p>Forgot password?</p>
+            <button type="submit" id="signin">Sign in</button>
+            <p>Don't have an account? <a href="signup.html">Sign up now</a></p>
+        </form>
     </div>
-    <form action="">
-    <label for="email">Email</label>
-    <br><br>
-    <input type="email" id="email" name="Enter your email">
-    <br><br>
-    <label for="password">Password</label>
-    <br><br>
-    <input type="password" id="password" name="enter password">
-    <p>Forgot password?</p>
-    <button id="signin">Sign in</button>
-    <br><br>
-    <p>Don't have an account? <a href="signup.html">Sign up now</a> </p>
-    </form>
+    <div class="loginimage">
+        <img style="width: 400px;" src="Login-rafiki.png" alt="Login">
     </div>
-<div class="loginimage">
-    <img style="width: 400px;"  src="Login-rafiki.png" alt="Login">
-</div>
 </section>
 </body>
 </html>
