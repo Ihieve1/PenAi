@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    </head>
+<body>
+    <div class="container">
+        <h1>AI Email Generator</h1>
+        <form id="emailForm">
+            <textarea id="userInput" placeholder="Enter your email request here (e.g., 'Request vacation time')"></textarea>
+            <button type="submit">Generate Email</button>
+            <div id="loading" style="display: none;">Loading...</div>
+        </form>
+        <div class="response" id="response"></div>
+        <button id="copyButton" style="display: none;">Copy</button>
+    </div>
+    <script>
+        const form = document.getElementById('emailForm');
+        const userInput = document.getElementById('userInput');
+        const responseDiv = document.getElementById('response');
+        const loadingDiv = document.getElementById('loading');
+        const copyButton = document.getElementById('copyButton');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (userInput.value.trim() === '') {
+                alert('Please enter your email request.');
+                return;
+            }
+            loadingDiv.style.display = 'block';
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'user_input=' + encodeURIComponent(userInput.value)
+            })
+            .then(response => response.json())
+            .then(data => {
+                responseDiv.textContent = data.response;
+                copyButton.style.display = 'inline-block';
+            })
+            .catch(error => {
+                responseDiv.textContent = 'An error occurred. Please try again.';
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                loadingDiv.style.display = 'none';
+            });
+        });
+
+        copyButton.addEventListener('click', function() {
+            navigator.clipboard.writeText(responseDiv.textContent)
+                .then(() => {
+                    alert('Email copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                });
+        });
+    </script>
+</body>
+</html>
