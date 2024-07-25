@@ -1,69 +1,90 @@
-
-*{
-    box-sizing: border-box;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    background-color: blue;
-    color: white;
-    font-weight: bold;
+body {
+  background: url(background.jpg);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  line-height: 1.6;
 }
 
-.firstimage{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 300px;
+.all section {
+  width: 100%;
 }
 
-.firstdiv{
-    background-color: white;
-    color: blue;
+/* General styles for images */
+.firstimage, .secondimage {
+  display: block;
+  margin: 20px auto;
+  width: 150px;
+}
+
+/* General styles for divs */
+.firstdiv, .seconddiv, .thirddiv, .fourthdiv {
+  background: url(back.jpg);
+  background-size: cover;
+  color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Specific styles for the firstdiv */
+.firstdiv p {
+  margin-top: 20px;
+  padding: 0 20px;
+  line-height: 1.5;
+}
+
+/* Specific styles for the seconddiv */
+.seconddiv h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.seconddiv p {
+  margin-bottom: 20px;
+}
+
+/* Specific styles for the thirddiv */
+.thirddiv p {
+  margin-bottom: 10px;
+}
+
+/* Specific styles for the fourthdiv */
+.fourthdiv p {
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .firstimage, .secondimage {
+    width: 100px;
+  }
+
+  .firstdiv, .seconddiv, .thirddiv, .fourthdiv {
+    width: 90%;
+  }
+
+  .firstdiv p, .seconddiv p, .thirddiv p, .fourthdiv p {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .firstimage, .secondimage {
+    width: 80px;
+  }
+
+  .firstdiv, .seconddiv, .thirddiv, .fourthdiv {
     padding: 10px;
-    
-}
-
-.firstdiv p{
-    padding-top: 20px;
-    padding-left: 100px;
-    width: 500px;
-    line-height: 20px;
-}
-
-.firstdiv h1{
-    text-align: center;
-}
-
-.seconddiv{
-    padding: 10px;
-    max-height: 300px;
-
-}
-
-.seconddiv h2{
-    text-align: center;
-    padding-top: 5px;
-    font-size: 30px;
-}
-
-.secondimage{
-    text-align: left;
-    width: 300px;
-    
-    
-    
-}
-
-.seconddiv p{
-    text-align: right;
-    width: 500px;
-    margin-left: auto;
-    padding-right: 100px;
- 
-
-}
-.thirddiv{
-    background-color: white;
-    color: black;
+  }
 }
