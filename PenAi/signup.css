@@ -6,6 +6,7 @@ body {
     margin: 0px;
     background-image: url('background.jpg');
     font-family: 'Poppins', 'Sans-serif';
+    font-size: large;
     box-sizing: border-box;
 }
 

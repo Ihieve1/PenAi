@@ -3,100 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Generator Profile Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBnqiphyNW22iJHDE78mGccvnUnubZ5xEA",
+            authDomain: "penai-45582.firebaseapp.com",
+            projectId: "penai-45582",
+            storageBucket: "penai-45582.appspot.com",
+            messagingSenderId: "814415327072",
+            appId: "1:814415327072:web:64935656d24c2a4a527805",
+            measurementId: "G-BJFD578BR2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    document.getElementById('welcome-message').textContent = `Welcome, ${user.email}`;
+                } else {
+                    window.location.href = 'signup.html';
+                }
+            });
+
+            document.getElementById('compose-btn').addEventListener('click', showComposeSection);
+            document.getElementById('reply-btn').addEventListener('click', showReplySection);
+        });
+
+        function showComposeSection() {
+            document.getElementById('compose-section').style.display = 'block';
+            document.getElementById('reply-section').style.display = 'none';
         }
-        .container {
-            width: 60%;
-            margin: 50px auto;
-            background-color: #89d7eb;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        function showReplySection() {
+            document.getElementById('compose-section').style.display = 'none';
+            document.getElementById('reply-section').style.display = 'block';
         }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin: 10px 0 5px;
-            color: #555;
-        }
-        input, textarea {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .email-profile {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #e9ecef;
-            border-radius: 4px;
-            display: none;
-        }
-        .image-preview {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-        .image-preview img {
-            max-width: 100%;
-            max-height: 200px;
-        }
-    </style>
+    </script>
 </head>
-<body background="stage 3.jpg">
+<body>
+    <nav>
+        <img src="logo.png" alt="Pen AI Logo" style="height: 700px; width: 700px;" class="logo">
+        <h1 id="welcome-message">Welcome</h1>
+    </nav>
     <div class="container">
-        <h1>EDIT PROFILE</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="fullName" required>
+        <div class="email-generator">
+            <div class="logo">
+                <img src="logo.png" alt="Pen AI Logo" style="height: 100px; width: 100px;">
+                <h2>Email Generator</h2>
+            </div>
+            <div class="type">
+                <button class="btn" id="compose-btn">Compose New Email</button>
+                <button class="btn" id="reply-btn">Reply to Email</button>
+            </div>
 
-            <label for="jobTitle">Job Title</label>
-            <input type="text" id="jobTitle" name="jobTitle" required>
+            <!-- Compose Section -->
+            <div id="compose-section">
+                <div class="form-group">
+                    <label for="subject">Subject Line</label>
+                    <input type="text" id="subject" placeholder="Example: Introduction to New Client, Proposal for Marketing">
+                </div>
+                <div class="form-group">
+                    <label for="recipient">Recipient</label>
+                    <input type="text" id="recipient" placeholder="Example: potential client, colleague, or supervisor.">
+                </div>
+                <form>
+                    <label for="sender">Sender</label>
+                    <input type="text" id="sender" placeholder="Example: Tobi, Marketing Department, Product Team A, Acme Corporation.">
+                    <label for="length">Length</label>
+                    <input type="range" id="length" min="0" max="100" value="50">
+                    <label for="tone">Choose a tone</label>
+                    <input type="text" id="tone" placeholder="Example: Friendly">
+                    <label for="language">Language</label>
+                    <input type="text" id="language" placeholder="US English">
+                    <button type="submit">Generate</button>
+                </form>
+            </div>
 
-            <label for="companyName">Company Name</label>
-            <input type="text" id="companyName" name="companyName" required>
-
-            <label for="emailAddress">Email Address</label>
-            <input type="email" id="emailAddress" name="emailAddress" required>
-
-            <label for="phoneNumber">Phone Number</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" required>
-
-            <label for="displayImage">Display Image</label>
-            <input type="file" id="displayImage" name="displayImage" accept="image/*" required>
-
-            <button type="submit">Generate Email Profile</button>
-        </form>
-
-        <div class="email-profile" id="emailProfile">
-            <h2>Generated Email Profile</h2>
-            <p id="profileDetails"></p>
+            <!-- Reply Section -->
+            <div id="reply-section" style="display: none;">
+                <div class="form-group">
+                    <label for="received-email">Received Email</label>
+                    <textarea id="received-email" rows="4" placeholder="Example: I am writing to propose a new marketing campaign that I believe will be effective for your business."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reply-subject">Subject Line</label>
+                    <input type="text" id="reply-subject" placeholder="Example: Introduction to New Client, Proposal for Marketing">
+                </div>
+                <div class="form-group">
+                    <label for="reply-recipient">Recipient</label>
+                    <input type="text" id="reply-recipient" placeholder="Example: potential client, colleague, or supervisor.">
+                </div>
+                <form>
+                    <label for="reply-sender">Sender</label>
+                    <input type="text" id="reply-sender" placeholder="Example: John Smith, Marketing Department, Product Team A, Acme Corporation.">
+                    <label for="reply-length">Length</label>
+                    <input type="range" id="reply-length" min="0" max="100" value="50">
+                    <label for="reply-tone">Choose a tone</label>
+                    <input type="text" id="reply-tone" placeholder="Example: Friendly">
+                    <label for="reply-language">Language</label>
+                    <input type="text" id="reply-language" placeholder="US English">
+                    <button type="submit">Generate</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>

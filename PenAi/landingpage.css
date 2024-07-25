@@ -136,7 +136,8 @@ z-index: 10;
 
 .how-it-works {
   padding: 5em 1em;
-  background: url(back.jpg);;
+  background: url(back.jpg);
+  background-size: cover;
 }
 
 .how-it-works h2 {
@@ -196,9 +197,10 @@ z-index: 10;
 .new-section {
   padding: 5em 1em;
   background: url(back.jpg);
+  background-size: cover;
   color: #000000;
   /* margin: 2em auto; */
-  max-width: 1200px;
+  width: auto;
   border-radius: 10px;
   text-align: center;
  
