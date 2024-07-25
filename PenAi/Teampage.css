@@ -72,3 +72,26 @@ header h1 {
         max-width: 500px;
     }
 }
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .team-member {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .team-description h3 {
+        font-size: 1em;
+    }
+
+    .team-description p {
+        font-size: 0.9em;
+    }
+}
