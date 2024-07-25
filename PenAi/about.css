@@ -6,7 +6,7 @@
 
 body {
   background: url(background.jpg);
-  color: #fff;
+  color: #000;
   font-family: 'Arial', sans-serif;
   font-weight: bold;
   line-height: 1.6;
@@ -27,7 +27,7 @@ body {
 .firstdiv, .seconddiv, .thirddiv, .fourthdiv {
   background: url(back.jpg);
   background-size: cover;
-  color: #fff;
+  color: #000;
   padding: 20px;
   margin: 20px auto;
   width: 80%;
