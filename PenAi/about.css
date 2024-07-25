@@ -1,4 +1,4 @@
--
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -66,5 +66,5 @@ body{
 }
 .thirddiv{
     background-color: white;
-    color: black;
+    color: pink;
 }
