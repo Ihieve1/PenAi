@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
+app = Flask(__name__, static_folder='Static')
 
 load_dotenv()
 
@@ -33,7 +34,7 @@ examples = [
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('dashboard.html')
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -46,7 +47,6 @@ def generate():
         messages=messages
     )
     return jsonify({'response': response.last})
-
 
 if __name__ == '__main__':
     app.run(debug=True)
