@@ -1,41 +1,27 @@
 from flask import Flask, request, jsonify
-from transformers import pipeline
+import requests
 
 app = Flask(__name__)
 
-# Initialize the text generation pipeline
-generator = pipeline('text-generation', model='gpt2')
+MAILGUN_DOMAIN = 'your_mailgun_domain'
+MAILGUN_API_KEY = 'your_mailgun_api_key'
 
-def generate_email_with_ai(data):
-    prompt = f"Write an email with the following details:\n"
-    prompt += f"Subject: {data['subject']}\n"
-    prompt += f"To: {data['recipient']}\n"
-    prompt += f"From: {data['sender']}\n"
-    prompt += f"Tone: {data['tone']}\n"
-    prompt += f"Language: {data['language']}\n"
-    
-    if 'receivedEmail' in data:
-        prompt += f"In response to: {data['receivedEmail']}\n"
-
-    # Generate text
-    result = generator(prompt, max_length=int(data['length']) * 10, num_return_sequences=1)
-
-    # The generated text is in result[0]['generated_text']
-    generated_email = result[0]['generated_text']
-
-    # Remove the prompt from the generated text
-    generated_email = generated_email.replace(prompt, '')
-
-    return generated_email.strip()
-
-@app.route('/generate_email', methods=['POST'])
-def generate_email():
+@app.route('/send-email', methods=['POST'])
+def send_email():
     data = request.json
-    try:
-        generated_email = generate_email_with_ai(data)
-        return jsonify({"email": generated_email})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    recipient = data['recipient']
+    subject = data['subject']
+    body = data['body']
+
+    response = requests.post(
+        f"https://api.mailgun.net/v3/{MAILGUN_DOMAIN}/messages",
+        auth=("api", MAILGUN_API_KEY),
+        data={"from": "Excited User <mailgun@YOUR_DOMAIN_NAME>",
+              "to": [recipient],
+              "subject": subject,
+              "text": body})
+
+    return jsonify({'status': 'success' if response.status_code == 200 else 'error'})
 
 if __name__ == '__main__':
     app.run(debug=True)
