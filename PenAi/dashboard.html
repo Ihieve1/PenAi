@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
-    <script type="module">
+    <!-- <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 
@@ -44,7 +44,7 @@
             document.getElementById('compose-section').style.display = 'none';
             document.getElementById('reply-section').style.display = 'block';
         }
-    </script>
+    </script> -->
 </head>
 <body>
     <nav>
@@ -113,5 +113,71 @@
             </div>
         </div>
     </div>
+
+    <script>
+        
+    async function generateEmail(isReply) {
+        const endpoint = '/generate_email';
+        const data = isReply ? getReplyData() : getComposeData();
+    
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+    
+        const result = await response.json();
+        displayGeneratedEmail(result.email);
+    }
+    
+    function getComposeData() {
+        return {
+            subject: document.getElementById('subject').value,
+            recipient: document.getElementById('recipient').value,
+            sender: document.getElementById('sender').value,
+            length: document.getElementById('length').value,
+            tone: document.getElementById('tone').value,
+            language: document.getElementById('language').value,
+        };
+    }
+    
+    function getReplyData() {
+        return {
+            receivedEmail: document.getElementById('received-email').value,
+            subject: document.getElementById('reply-subject').value,
+            recipient: document.getElementById('reply-recipient').value,
+            sender: document.getElementById('reply-sender').value,
+            length: document.getElementById('reply-length').value,
+            tone: document.getElementById('reply-tone').value,
+            language: document.getElementById('reply-language').value,
+        };
+    }
+    
+    function displayGeneratedEmail(email) {
+        // Create a new element to display the generated email
+        const emailDisplay = document.createElement('div');
+        emailDisplay.textContent = email;
+        document.querySelector('.container').appendChild(emailDisplay);
+    }
+    
+    // Modify the existing event listeners
+    document.getElementById('compose-btn').addEventListener('click', () => {
+        showComposeSection();
+        document.querySelector('form').onsubmit = (e) => {
+            e.preventDefault();
+            generateEmail(false);
+        };
+    });
+    
+    document.getElementById('reply-btn').addEventListener('click', () => {
+        showReplySection();
+        document.querySelector('#reply-section form').onsubmit = (e) => {
+            e.preventDefault();
+            generateEmail(true);
+        };
+    });
+    </script>
 </body>
 </html>
