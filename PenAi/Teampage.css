@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+      text-decoration: none;
 }
 
 body {
@@ -20,12 +21,11 @@ header {
     
     ul{
   display: flex;
-  background: url(background.jpg);
   padding: 0;
   text-align: center;
   align-items: center;
   justify-content: space-between;
-        text-decoration: none;
+  
 }
 
 header h1 {
