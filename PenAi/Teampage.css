@@ -11,21 +11,20 @@ body {
     background: url(PenAi/background.jpg);
     color: #333;
     line-height: 1.6;
+     text-decoration: none;
 }
 
 header {
+    display: flex;
     background: #333;
     color: #fff;
     padding: 20px;
     text-align: center;
     
     ul{
-  display: flex;
-  padding: 0;
   text-align: center;
   align-items: center;
   justify-content: space-between;
-  
 }
 
 header h1 {
