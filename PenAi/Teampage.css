@@ -3,7 +3,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-      text-decoration: none;
 }
 
 body {
@@ -18,7 +17,7 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
-
+}
 
 header h1 {
     margin: 0;
