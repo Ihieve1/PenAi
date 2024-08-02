@@ -17,6 +17,15 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
+    
+    ul{
+  display: flex;
+  background: url(background.jpg);
+  padding: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+        text-decoration: none;
 }
 
 header h1 {
