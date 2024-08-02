@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: url(PenAi/background.jpg);
+    background: url('PenAi/background.jpg');
     color: #333;
     line-height: 1.6;
 }
@@ -21,6 +21,28 @@ header {
 
 header h1 {
     margin: 0;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
 }
 
 /* Team Section Styles */
